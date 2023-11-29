@@ -8,13 +8,15 @@ def f(g, x, p):
 
 
 if __name__ == '__main__':
-    privateKey = input("Input your private key:")
+    privateKey = input("输入你的私钥：")
     privateKey = int(privateKey)
     publicKey = f(g, privateKey, p)
 
     # 启动服务端
     server_socket = socket(AF_INET, SOCK_STREAM)
-    server_socket.bind(('localhost', 12345))
+    host = gethostbyname(gethostname())
+    print(host)
+    server_socket.bind((host, 12345))
     server_socket.listen(1)
     print('等待连接...')
     conn, addr = server_socket.accept()
